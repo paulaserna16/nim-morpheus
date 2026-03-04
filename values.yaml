@@ -24,4 +24,6 @@ ingress:
 
 env:
   NGC_API_KEY: "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"
-
+  
+nodeSelector:
+  kubernetes.io/hostname: worker3
