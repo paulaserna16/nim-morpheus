@@ -27,3 +27,6 @@ env:
   
 nodeSelector:
   kubernetes.io/hostname: worker3
+  
+nimCache:
+  hostPath: /mnt/shared_models/nim
