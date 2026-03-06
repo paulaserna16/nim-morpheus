@@ -36,4 +36,11 @@ spec:
           env:
             - name: NGC_API_KEY
               value: {{ .Values.env.NGC_API_KEY | quote }}
-
+          volumeMounts:
+            - name: nim-cache
+              mountPath: /opt/nim/.cache
+      volumes:
+        - name: nim-cache
+          hostPath:
+            path: {{ .Values.nimCache.hostPath }}
+            type: Directory
