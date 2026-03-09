@@ -28,11 +28,6 @@ spec:
           resources:
             limits:
               nvidia.com/gpu: {{ .Values.resources.limits.nvidia_gpu }}
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
-            requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
           env:
             - name: NGC_API_KEY
               value: {{ .Values.env.NGC_API_KEY | quote }}
