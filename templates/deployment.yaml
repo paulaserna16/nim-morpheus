@@ -38,6 +38,8 @@ spec:
               value: {{ .Values.env.NGC_API_KEY | quote }}
             - name: NIM_MODEL_PROFILE
               value: "1d53689b7c5bbb0a1b23abd52c2396efc0b42ad460ba74bb57841e16d5fb9aaa"
+            - name: NIM_DISABLE_PROFILE_AUTOSELECT
+              value: "1"
           volumeMounts:
             - name: nim-cache
               mountPath: /opt/nim/.cache
