@@ -36,6 +36,8 @@ spec:
               value: "1d53689b7c5bbb0a1b23abd52c2396efc0b42ad460ba74bb57841e16d5fb9aaa"
             - name: NIM_DISABLE_PROFILE_AUTOSELECT
               value: "1"
+            - name: NIM_MAX_MODEL_LEN
+              value: "8192"
           volumeMounts:
             - name: nim-cache
               mountPath: /opt/nim/.cache
