@@ -1,0 +1,15 @@
+{{- if eq .Values.nimCache.type "pvc" }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.nimCache.pvc.claimName }}
+spec:
+  accessModes:
+    {{- toYaml .Values.nimCache.pvc.accessModes | nindent 4 }}
+  resources:
+    requests:
+      storage: {{ .Values.nimCache.pvc.size }}
+  {{- if .Values.nimCache.pvc.storageClassName }}
+  storageClassName: {{ .Values.nimCache.pvc.storageClassName }}
+  {{- end }}
+{{- end }}
