@@ -13,6 +13,8 @@ spec:
       labels:
         app: nim-llm
     spec:
+      securityContext:
+        fsGroup: 1000
       hostIPC: true 
       imagePullSecrets:
         {{- toYaml .Values.imagePullSecrets | nindent 6 }}
@@ -40,9 +42,17 @@ spec:
               value: "8192"
           volumeMounts:
             - name: nim-cache
-              mountPath: /opt/nim/.cache
+              mountPath: {{ .Values.nimCache.mountPath }}
       volumes:
+        {{- if eq .Values.nimCache.type "hostPath" }}
         - name: nim-cache
           hostPath:
-            path: {{ .Values.nimCache.hostPath }}
+            path: {{ .Values.nimCache.hostPath.path }}
             type: Directory
+        {{- end }}
+
+        {{- if eq .Values.nimCache.type "pvc" }}
+        - name: nim-cache
+          persistentVolumeClaim:
+            claimName: {{ .Values.nimCache.pvc.claimName }}
+        {{- end }}
