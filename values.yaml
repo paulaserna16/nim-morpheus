@@ -29,4 +29,13 @@ nodeSelector:
   kubernetes.io/hostname: worker3
   
 nimCache:
-  hostPath: /mnt/shared_models/nim
+  type: pvc 
+  mountPath: /opt/nim/.cache
+  hostPath:
+    path: /home/aps/nim_mnt
+  pvc:
+    claimName: nim-cache-pvc
+    storageClassName: "wekafs"
+    accessModes:
+      - ReadWriteOnce
+    size: 40Gi
